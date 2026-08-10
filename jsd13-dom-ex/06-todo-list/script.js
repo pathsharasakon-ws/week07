@@ -5,6 +5,9 @@
 //   - the form (#todo-form)
 //   - the input (#todo-input)
 //   - the list (#todo-list)
+const todoForm = document.getElementById('todo-form');
+const todoInput = document.getElementById('todo-input');
+const todoList = document.getElementById('todo-list');
 
 
 // TODO 2: Listen for the form's "submit" event. Inside the handler:
@@ -12,21 +15,52 @@
 //   - read and trim the input's value
 //   - if it's empty, do nothing (return)
 //   - otherwise, create a new to-do item (see TODO 3) and clear the input
+todoForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const text = todoInput.value.trim();
+
+    if (text === "") return;
+
+    addTodo(text);
+    
+    todoInput.value = "";
+});
 
 
 // TODO 3: Write a function addTodo(text) that:
 //   - creates an <li>
 //   - creates a <span class="todo-text"> inside it containing the text
 //   - creates a <button class="delete-btn"> inside it with text "x"
-//   - appends the <li> to the list
-//
+//   - appends the <li> to the list (นำแท็ก <li> ที่สร้างเสร็จแล้วไป ต่อท้าย (append) เข้าในรายการ #todo-list (<ul>))
+//ข้อ appends จะอยู่ 3 บรรทัดล่างสุด
+
 // Hint: use document.createElement, textContent, and append/appendChild.
+function addTodo(text) {
+const li = document.createElement('li');
 
-
-// TODO 4: When the delete button inside an <li> is clicked, remove that <li>
-// from the list. (Attach this listener when you create the button in TODO 3.)
+const span = document.createElement('span');
+span.className = "todo-text";
+span.textContent = text;
 
 
 // TODO 5: When the todo-text span inside an <li> is clicked, toggle the
 // "completed" class on the <li>. (Attach this listener when you create the
 // span in TODO 3.)
+span.addEventListener('click', () => {
+    li.classList.toggle("completed");
+});
+
+// TODO 4: When the delete button inside an <li> is clicked, remove that <li>
+// from the list. (Attach this listener when you create the button in TODO 3.)
+const deleteBtn = document.createElement('button');
+deleteBtn.className = "delete-btn";
+deleteBtn.textContent = "x";
+deleteBtn.addEventListener('click', () => {
+    li.remove();
+});
+
+li.append(span, deleteBtn);
+
+todoList.append(li);
+};
