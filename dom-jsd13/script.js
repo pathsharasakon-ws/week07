@@ -14,9 +14,17 @@ console.log(document.querySelector("#themeBtn").classList);
 console.log(document.querySelector("#addTaskBtn").parentElement);
 
 // 5. Events               -> #click-me, #list, #signupForm, #email, .error
-console.log(document.querySelector("#click-me").addEventListener("click", () => {
-  console.log("Button clicked!");
-}));
+//อีกวิธี
+// console.log(document.querySelector("#click-me").addEventListener("click", () => {
+//   console.log("Button clicked!");
+// }));
+
+const btn = document.querySelector("#click-me");
+let count = 0;
+btn.addEventListener("click", () => {
+  count++;
+  btn.textContent = "clicked" + " " + count;
+});
 
 // 6. Pokémon Card Fetcher -> #fetchBtn, #resetBtn, #gallery
 console.log(document.querySelector("#fetchBtn").addEventListener("click", () => {
@@ -26,3 +34,4 @@ console.log(document.querySelector("#fetchBtn").addEventListener("click", () => 
       console.log(data);
     });
 }));
+

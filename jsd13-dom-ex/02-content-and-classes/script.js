@@ -3,7 +3,7 @@
 
 // TODO 1: Select #heading and change its textContent to "Welcome!"
 const heading = document.getElementById('heading')
-heading.innerHTML = "Welcome!"
+heading.innerHTML = "Welcome!";
 console.log(heading);
 
 //อีกวิธี
@@ -13,7 +13,7 @@ console.log(heading);
 // innerHTML so the word "learning" is wrapped in a <strong> tag, i.e. the
 // paragraph should read: I am <strong>learning</strong> the DOM.
 const bio = document.getElementById('bio')
-bio.innerHTML = "I am <strong>learning</strong> the DOM."
+bio.innerHTML = "I am <strong>learning</strong> the DOM.";
 console.log(bio);
 
 //อีกวิธี
@@ -31,7 +31,7 @@ console.log(card.getAttribute('class'));
 
 //const card = document.getElementById('card') มีอยู่แล้วในข้อ 3 ไม่ควรตั้งค่าซ้ำกัน
 card.classList.add('highlight');
-console.log(card.className)
+console.log(card.className);
 
 
 // TODO 5: #card starts with a data-visits="0" attribute. Read the current
@@ -42,6 +42,10 @@ console.log(card.className)
 //ใช้ let เหมาะสำหรับใช้กับ loop เพราะค่าสามารถเปลี่ยนแปลงได้
 
 let visits = Number(card.dataset.visits);
-visits += 1; // เพิ่ม 1 
+visits += 1;
 card.dataset.visits = visits;
 console.log(card.dataset.visits);
+
+//อีกวิธี
+//card.dataset.visits = Number(card.dataset.visits) + 1;
+//console.log(card.dataset.visits);
