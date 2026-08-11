@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>นวดแป้งโมจิ | Mochi Kneader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chonburi&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="steam-bg" aria-hidden="true"></div>
+
+  <header class="topbar">
+  <h1 class="logo">
+    นวดแป้ง 
+    <img src="./logo.png" alt="โลโก้โมจิ" class="logo-img"> 
+    <span>โมจิ</span>
+  </h1>
+  <p class="tagline">ยิ่งนวด แป้งยิ่งนู่มมมมมมม~</p>
+  </header>
+
+  <main class="game">
+
+    <!-- ซ้าย: พื้นที่นวดแป้งหลัก -->
+    <section class="clicker-zone">
+      <div class="counter-card">
+        <div class="flour-count" id="flourCount">0</div>
+        <div class="flour-label">แป้งโมจิ</div>
+        <div class="cps" id="cpsDisplay">0 แรงนวด / วินาที</div>
+      </div>
+
+      <button class="mochi-button" id="mochiBtn" aria-label="นวดแป้งโมจิ">
+        <div class="mochi-dough" id="mochiDough">
+          <img src="./knead.png" alt="นวดแป้งโมจิ" class="mochi-img">
+        </div>
+      </button>
+      <p class="hint">คลิกที่ก้อนแป้งเพื่อนวด</p>
+
+      <div id="popupLayer" class="popup-layer" aria-hidden="true"></div>
+    </section>
+
+    <!-- ขวา: ร้านค้า -->
+    <section class="shop" aria-label="ร้านอุปกรณ์นวดแป้ง">
+      <h2 class="shop-title">อุปกรณ์ / ผู้ช่วย</h2>
+      <div class="shop-list" id="buildingList"></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>โปรเจกต์เกม “นวดแป้งขนมโมจิ” — ดัดแปลงแนวคิดจาก Cookie Clicker</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

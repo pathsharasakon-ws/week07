@@ -1,0 +1,282 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #FFF8F0;
+  color: #4A3428;
+  font-family: 'Sarabun', sans-serif;
+  position: relative;
+}
+
+/* รูปพื้นหลัง */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url('./background.png') center/cover no-repeat;
+  opacity: 0.2; 
+  z-index: -1;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 8px 0;
+}
+
+/* Header Zone */
+.topbar {
+  text-align: center;
+  padding: 24px 16px 12px;
+}
+
+.logo {
+  font-family: 'Chonburi', cursive;
+  font-size: 40px;
+  margin: 0;
+  color: #A85751;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* ระยะห่างระหว่างตัวอักษรกับโลโก้ */
+}
+
+.logo span { 
+  color: #6E9459; 
+}
+
+.logo-img {
+  height: 32px; 
+  width: auto;
+  object-fit: contain;
+}
+
+.tagline {
+  margin: 6px 0 0;
+  font-size: 16px;
+  color: #7A6455;
+}
+
+/* Layout หลัก */
+.game {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 20px;
+  width: 95%;
+  max-width: 1200px;
+  margin: 10px auto;
+}
+
+@media (max-width: 850px) {
+  .game { 
+    grid-template-columns: 1fr; 
+  }
+}
+
+/* ---------- Clicker Zone ---------- */
+
+.clicker-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
+
+/* กรอบนับคะแนน */
+.counter-card {
+  background: #FFFEFB;
+  border: 1px solid #E5D8CE;
+  border-radius: 12px;
+  padding: 16px 24px;
+  text-align: center;
+  width: 100%;
+}
+
+.flour-count {
+  font-family: 'Chonburi', cursive;
+  font-size: 36px;
+  line-height: 1.1;
+}
+
+.flour-label {
+  font-size: 16px;
+  color: #E08498;
+  font-weight: 600;
+}
+
+.cps {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #9A8474;
+}
+
+.mochi-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* รูปโมจิ + กดแล้วย่อ/เล่น Animation ยุบตัว */
+.mochi-dough {
+  width: 360px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.08s ease;
+}
+
+.mochi-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ตอบสนองตอนกดปุ่ม mouse/finger down */
+.mochi-button:active .mochi-dough {
+  transform: scale(0.88, 0.94);
+}
+
+/* คลาสสำหรับเล่นอนิเมชันตอนนวด */
+.mochi-dough.squish {
+  animation: squish 0.18s ease;
+}
+
+/* Animation ยุบตัวของโมจิ */
+@keyframes squish {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.08, 0.9); }
+  100% { transform: scale(1); }
+}
+
+.hint {
+  font-size: 14px;
+  color: #9A8474;
+  margin: 0;
+}
+
+/* เลเยอร์และ Animation ตัวเลขลอย (+N) */
+.popup-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.pop {
+  position: absolute;
+  font-weight: 700;
+  color: #A85751;
+  font-family: 'Chonburi', cursive;
+  font-size: 18px;
+  animation: floatUp 0.9s ease-out forwards;
+}
+
+/* Animation ตัวเลขลอยขึ้นและจางหายไป */
+@keyframes floatUp {
+  0%   { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -60px); }
+}
+
+/* ---------- Shop ---------- */
+
+.shop {
+  background: #FFFEFB;
+  border: 1px solid #E5D8CE;
+  border-radius: 12px;
+  padding: 20px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.shop-title {
+  font-family: 'Chonburi', cursive;
+  font-size: 18px;
+  color: #6E9459;
+  margin: 0 0 12px;
+  border-bottom: 1px solid #E5D8CE;
+  padding-bottom: 8px;
+}
+
+.shop-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.shop-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFF8F0;
+  border: 1px solid #E5D8CE;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.shop-item:hover:not(:disabled) {
+  border-color: #F4A6B7;
+  background: #FFF3EB;
+}
+
+.shop-item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.shop-item .icon {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #FFE8D6;
+}
+
+.shop-item .icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.shop-item .info {
+  flex: 1;
+}
+
+.shop-item .name {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.shop-item .desc {
+  font-size: 13px;
+  color: #9A8474;
+}
+
+.shop-item .cost {
+  font-size: 14px;
+  font-weight: 700;
+  color: #A85751;
+  white-space: nowrap;
+}
+
+.shop-item .owned {
+  font-size: 12px;
+  color: #6E9459;
+  margin-left: 4px;
+}
+
+.footer {
+  text-align: center;
+  font-size: 12px;
+  color: #A89684;
+  padding: 20px 16px;
+}
